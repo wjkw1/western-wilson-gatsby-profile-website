@@ -1,6 +1,7 @@
 module.exports = {
+  pathPrefix: `/western-wilson-gatsby-profile-website/`,
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Western Wilson`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
   },
