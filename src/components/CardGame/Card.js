@@ -1,20 +1,37 @@
 import React from "react"
 
 const Card = props => {
-  return (
-    <>
+  if (props.suit == "WILD") {
+    return (
       <div
         style={{
-          margin: `3rem auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
+          color: `purple`,
         }}
       >
-        <p>{props.suit}</p>
-        <p>{props.value}</p>
+        {props.value}
       </div>
-    </>
-  )
+    )
+  } else if (props.suit == "♣︎" || props.suit == "♠︎") {
+    return (
+      <>
+        <div style={{}}>
+          {props.suit} : {props.value}
+        </div>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <div
+          style={{
+            color: `red`,
+          }}
+        >
+          {props.suit} : {props.value}
+        </div>
+      </>
+    )
+  }
 }
 
 export default Card
