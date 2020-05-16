@@ -1,7 +1,10 @@
 import React from "react"
 import Deck from "./Deck"
+import Player from "./Player"
 
 const GameBoard = () => {
+  const hand = [0, 1, 2, 3]
+
   return (
     <>
       <div
@@ -11,6 +14,7 @@ const GameBoard = () => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
+        <Player name="Player 1" hand={hand} />
         <Deck />
       </div>
     </>

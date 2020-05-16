@@ -1,8 +1,9 @@
 import React from "react"
 import Card from "./Card"
 
+//This gives a deck of 56 cards, divisible by 8 so perfect for our card game
 const Deck = props => {
-  const wilds = ["joker-1", "joker-2"]
+  const wilds = ["joker-1", "joker-2", "joker-3", "joker-4"]
   const suits = ["♠︎", "♥︎", "♣︎", "♦︎"]
   const values = [
     "A",
@@ -23,16 +24,20 @@ const Deck = props => {
   let cardDeck = []
   const buildDeck = () => {
     let card = []
+    let index = 0
+    let id = ""
 
     suits.map(suit => {
       values.map(value => {
-        card = { suit: suit, value: value, isFaceUp: false }
+        id = "cardId_" + index++
+        card = { key: id, suit: suit, value: value, isFaceUp: false }
         cardDeck.push(card)
       })
     })
 
     wilds.map(value => {
-      card = { suit: "WILD", value: value, isFaceUp: false }
+      id = "cardId_" + index++
+      card = { key: id, suit: "WILD", value: value, isFaceUp: false }
       cardDeck.push(card)
     })
 
@@ -54,6 +59,7 @@ const Deck = props => {
         {cardDeck.map(card => {
           return (
             <Card
+              key={card.key}
               suit={card.suit}
               value={card.value}
               isFaceUp={card.isFaceUp}

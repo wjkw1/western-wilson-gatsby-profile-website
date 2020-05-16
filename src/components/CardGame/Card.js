@@ -1,7 +1,7 @@
 import React from "react"
 
 const Card = props => {
-  if (props.suit == "WILD") {
+  if (props.suit === "WILD") {
     return (
       <div
         style={{
@@ -11,7 +11,7 @@ const Card = props => {
         {props.value}
       </div>
     )
-  } else if (props.suit == "♣︎" || props.suit == "♠︎") {
+  } else if (props.suit === "♣︎" || props.suit === "♠︎") {
     return (
       <>
         <div style={{}}>
