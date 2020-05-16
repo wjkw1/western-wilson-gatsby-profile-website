@@ -2,7 +2,10 @@ import React from "react"
 import Player from "./Player"
 
 const PlayerSection = props => {
-  const assignedCardValues = []
+  //TODO: pass the cardValues, number of players and handSize through to Player Section
+  let numberOfPlayers = 4,
+    numberOfCardsInHand = 3
+
   //Players have no need for suits
   const cardValues = [
     "A",
@@ -20,28 +23,51 @@ const PlayerSection = props => {
     "K",
   ]
 
+  //Fisher-Yates shuffle, walks through array and replaces with a random other value
+  const shuffleArrayList = array => {
+    let arrayCopy = [...array]
+    for (let i = arrayCopy.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1))
+      ;[arrayCopy[i], arrayCopy[j]] = [arrayCopy[j], arrayCopy[i]]
+    }
+    return arrayCopy
+  }
+
   //function to create an object that contains a players hand
   const assignPlayerHands = (
     numberOfPlayers,
     numberOfCardsInHand,
     cardValues
   ) => {
+    let players = []
+    let shuffledCardValues = shuffleArrayList(cardValues)
+
     //loop through players and assign the hands
-    let playerIndex, handIndex
+    let playerIndex,
+      handIndex,
+      currentCardValueIndex = 0
     for (playerIndex = 0; playerIndex < numberOfPlayers; playerIndex++) {
-      for (handIndex = 0; handIndex <= numberOfCardsInHand; handIndex++) {
-        //if card value is not empty
-        if (cardValues && cardValues.length > 0) {
-          //then assign to player, shift into assigned list
-        } else {
-          //else re-Shuffle from assignedCardValues into other list
-          //assign to player, shift into assigned list
+      let name = "Player " + (playerIndex + 1)
+      let hand = []
+      for (handIndex = 0; handIndex < numberOfCardsInHand; handIndex++) {
+        if (currentCardValueIndex >= shuffledCardValues.length) {
+          currentCardValueIndex = 0
         }
+        hand.push(shuffledCardValues[currentCardValueIndex++])
       }
+      //push the details to the player object
+      players.push({ key: "playerKey_" + playerIndex, name: name, hand: hand })
     }
+    //TODO: remove this line
+    console.log(players)
+    return players
   }
 
-  const hand = [0, 1, 2, 3]
+  let players = assignPlayerHands(
+    numberOfPlayers,
+    numberOfCardsInHand,
+    cardValues
+  )
 
   return (
     <>
@@ -52,9 +78,10 @@ const PlayerSection = props => {
       >
         PlayerSection
       </div>
-      <Player name="Player One" hand={hand} />
-      <Player name="Player Two" hand={hand} />
-      <Player name="Player Three" hand={hand} />
+
+      {players.map(player => {
+        return <Player key={player.key} name={player.name} hand={player.hand} />
+      })}
     </>
   )
 }

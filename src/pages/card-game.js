@@ -10,7 +10,7 @@ const CardGame = () => (
     <SEO title="Card Game" />
     <h1>Card Game</h1>
     <p>Welcome to the card game</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+    <div style={{ maxWidth: `1000px`, marginBottom: `1.45rem` }}>
       <GameBoard />
     </div>
   </Layout>

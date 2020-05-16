@@ -41,6 +41,7 @@ const Deck = props => {
       cardDeck.push(card)
     })
 
+    //TODO: remove this log
     console.log(cardDeck)
   }
 
@@ -51,7 +52,7 @@ const Deck = props => {
       <div
         className="deck"
         style={{
-          margin: `3rem auto`,
+          margin: `1rem auto`,
           maxWidth: 960,
           padding: `1.0875rem 1.45rem`,
         }}

@@ -7,7 +7,7 @@ const GameBoard = () => {
     <>
       <div
         style={{
-          margin: `3rem auto`,
+          margin: `1rem auto`,
           maxWidth: 960,
           padding: `0 1.0875rem 1.45rem`,
         }}
@@ -16,7 +16,7 @@ const GameBoard = () => {
       </div>
       <div
         style={{
-          margin: `3rem auto`,
+          margin: `1rem auto`,
           maxWidth: 960,
           padding: `0 1.0875rem 1.45rem`,
         }}
