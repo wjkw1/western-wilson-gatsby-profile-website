@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 
 const Player = props => {
   console.log(props.name + "\n" + props.hand + "\n" + props.hand.length)
-
   const [name, setName] = useState(props.name)
 
   return (
@@ -31,7 +30,7 @@ Player.propTypes = {
 
 Player.defaultProps = {
   name: ``,
-  name: [],
+  hand: [],
 }
 
 export default Player
