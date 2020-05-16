@@ -27,15 +27,15 @@ const Deck = props => {
     let index = 0
     let id = ""
 
-    suits.map(suit => {
-      values.map(value => {
+    suits.forEach(suit => {
+      values.forEach(value => {
         id = "cardId_" + index++
         card = { key: id, suit: suit, value: value, isFaceUp: false }
         cardDeck.push(card)
       })
     })
 
-    wilds.map(value => {
+    wilds.forEach(value => {
       id = "cardId_" + index++
       card = { key: id, suit: "WILD", value: value, isFaceUp: false }
       cardDeck.push(card)
