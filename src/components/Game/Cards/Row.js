@@ -6,7 +6,6 @@ import Card from "./Card"
  * @param {*} props
  */
 const Row = props => {
-  const deck = props.deck
   return (
     <>
       <div
@@ -17,13 +16,13 @@ const Row = props => {
           padding: `1.0875rem 1.45rem`,
         }}
       >
-        {deck.map(card => {
+        {props.deck.map(card => {
           return (
             <Card
               key={card.key}
               suit={card.suit}
               value={card.value}
-              show={card.show}
+              show={false}
             />
           )
         })}

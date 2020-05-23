@@ -1,10 +1,23 @@
-import React, { useState } from "react"
+import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
+
 /**
  * Displays a card based on the input props
  * suit, value, show, , drinkType = 'give/take/both' (not sure if needed)
  */
 const Card = props => {
-  //const [show, setShow] = useState(props.show)
+  const data = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "card-back.png" }) {
+        childImageSharp {
+          id
+          original {
+            src
+          }
+        }
+      }
+    }
+  `)
 
   //select colour of card text based on suit
   let colour = ""
@@ -26,17 +39,42 @@ const Card = props => {
       show card back
      else showCard by default
   */
-  return (
-    <>
-      <button
-        style={{
-          color: colour,
-        }}
-      >
-        {props.suit} : {props.value} : {props.show}
-      </button>
-    </>
-  )
+
+  if (props.show) {
+    return (
+      <>
+        <button
+          style={{
+            color: colour,
+            width: `100px`,
+            height: `180px`,
+          }}
+        >
+          {props.suit} : {props.value} : {props.show}
+        </button>
+      </>
+    )
+  } else {
+    //show the back of card
+    return (
+      <>
+        BACK OF CARD
+        <pre>
+          {JSON.stringify(data.file.childImageSharp.original.src, null, 4)}
+        </pre>
+        <button
+          src={data.file.childImageSharp.original.src}
+          style={{
+            color: colour,
+            // backgroundImage: data.file.childImageSharp.original.src,
+            width: `100px`,
+            height: `180px`,
+            fontSize: `0`,
+          }}
+        ></button>
+      </>
+    )
+  }
 }
 
 /**TODO: set the prop types
