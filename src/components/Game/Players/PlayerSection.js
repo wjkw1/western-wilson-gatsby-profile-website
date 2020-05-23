@@ -3,7 +3,7 @@ import Player from "./Player"
 
 const PlayerSection = props => {
   //TODO: pass the cardValues, number of players and handSize through to Player Section
-  let numberOfPlayers = 4,
+  let numberOfPlayers = 10,
     numberOfCardsInHand = 3
 
   //Players have no need for suits

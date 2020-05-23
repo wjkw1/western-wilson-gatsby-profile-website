@@ -1,9 +1,8 @@
 import React from "react"
-import Card from "./Card"
+import Row from "./Row"
 
-//This gives a deck of 56 cards, divisible by 8 so perfect for our card game
-const Deck = props => {
-  const wilds = ["joker-1", "joker-2", "joker-3", "joker-4"]
+const CardSection = props => {
+  const wilds = ["1", "2", "3", "4"]
   const suits = ["♠︎", "♥︎", "♣︎", "♦︎"]
   const values = [
     "A",
@@ -21,12 +20,13 @@ const Deck = props => {
     "K",
   ]
 
+  //
   let cardDeck = []
   const buildDeck = () => {
     let card = []
     let index = 0
     let id = ""
-
+    //loop through
     suits.forEach(suit => {
       values.forEach(value => {
         id = "cardId_" + index++
@@ -37,7 +37,7 @@ const Deck = props => {
 
     wilds.forEach(value => {
       id = "cardId_" + index++
-      card = { key: id, suit: "WILD", value: value, isFaceUp: false }
+      card = { key: id, suit: "*", value: value, isFaceUp: false }
       cardDeck.push(card)
     })
 
@@ -45,31 +45,21 @@ const Deck = props => {
     console.log(cardDeck)
   }
 
+  //build the deck
   buildDeck()
 
   return (
     <>
       <div
-        className="deck"
         style={{
-          margin: `1rem auto`,
-          maxWidth: 960,
-          padding: `1.0875rem 1.45rem`,
+          color: `red`,
         }}
       >
-        {cardDeck.map(card => {
-          return (
-            <Card
-              key={card.key}
-              suit={card.suit}
-              value={card.value}
-              isFaceUp={card.isFaceUp}
-            />
-          )
-        })}
+        CardSection
       </div>
+      <Row deck={cardDeck} />
     </>
   )
 }
 
-export default Deck
+export default CardSection

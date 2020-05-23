@@ -1,6 +1,6 @@
 import React from "react"
-import PlayerSection from "./PlayerSection"
-import CardSection from "./CardSection"
+import PlayerSection from "./Players/PlayerSection"
+import CardSection from "./Cards/CardSection"
 
 const GameBoard = () => {
   return (
@@ -8,7 +8,7 @@ const GameBoard = () => {
       <div
         style={{
           margin: `1rem auto`,
-          maxWidth: 960,
+          maxWidth: 500,
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
@@ -17,7 +17,7 @@ const GameBoard = () => {
       <div
         style={{
           margin: `1rem auto`,
-          maxWidth: 960,
+          maxWidth: 500,
           padding: `0 1.0875rem 1.45rem`,
         }}
       >

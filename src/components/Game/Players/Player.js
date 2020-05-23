@@ -6,13 +6,18 @@ const Player = props => {
 
   return (
     <>
-      <input type="text" value={name} onChange={e => setName(e.target.value)} />
       <div
         style={{
           color: `black`,
+          marginBottom: `10px`,
         }}
       >
-        {name} :
+        <input
+          type="text"
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
+
         {props.hand.map(card => {
           return (
             <span

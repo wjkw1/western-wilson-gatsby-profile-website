@@ -3,7 +3,7 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-import GameBoard from "../components/CardGame/GameBoard"
+import GameBoard from "../components/Game/GameBoard"
 
 const CardGame = () => (
   <Layout>
