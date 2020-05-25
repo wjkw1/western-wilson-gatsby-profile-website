@@ -1,18 +1,22 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 /**
  * Displays a card based on the input props
  * suit, value, show, , drinkType = 'give/take/both' (not sure if needed)
  */
 const Card = props => {
+  //set up the hook for showing the image on click
+  const [show, setShow] = useState(props.show)
+
+  //get the card back image
   const data = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "card-back.png" }) {
+      cardBack: file(relativePath: { eq: "card-back.png" }) {
         childImageSharp {
-          id
-          original {
-            src
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid
           }
         }
       }
@@ -31,26 +35,34 @@ const Card = props => {
     colour = "purple"
   }
 
-  /**TODO: show back or front of card depending on boolean prop.show
-    if prop isFaceUp is set
-    set state and handle click for button
-    if isFaceUp == True
-     else
-      show card back
-     else showCard by default
-  */
+  //flip the card on click
+  const handleClick = e => {
+    setShow(!show)
 
-  if (props.show) {
+    console.log(props)
+  }
+
+  const cardHeight = "140px",
+    cardWidth = "100px",
+    padding = "6px",
+    margin = "6px",
+    borderRadius = "6px"
+
+  if (show) {
     return (
       <>
         <button
           style={{
             color: colour,
-            width: `100px`,
-            height: `180px`,
+            width: cardWidth,
+            height: cardHeight,
+            borderRadius: borderRadius,
+            padding: padding,
+            margin: margin,
           }}
+          onClick={handleClick}
         >
-          {props.suit} : {props.value} : {props.show}
+          {props.suit} : {props.value}
         </button>
       </>
     )
@@ -58,20 +70,30 @@ const Card = props => {
     //show the back of card
     return (
       <>
-        BACK OF CARD
-        <pre>
-          {JSON.stringify(data.file.childImageSharp.original.src, null, 4)}
-        </pre>
         <button
-          src={data.file.childImageSharp.original.src}
           style={{
             color: colour,
-            // backgroundImage: data.file.childImageSharp.original.src,
-            width: `100px`,
-            height: `180px`,
+            width: cardWidth,
+            height: cardHeight,
             fontSize: `0`,
+            borderRadius: borderRadius,
+            padding: padding,
+            margin: margin,
           }}
-        ></button>
+          onClick={handleClick}
+        >
+          <Img
+            fluid={data.cardBack.childImageSharp.fluid}
+            alt="Back of card"
+            style={{
+              color: colour,
+              fontSize: `0`,
+              padding: `0`,
+              margin: `0`,
+              marginBottom: `0`,
+            }}
+          />
+        </button>
       </>
     )
   }
@@ -81,6 +103,7 @@ const Card = props => {
  * suit = string
  * value = string
  * show = boolean, null as default
- *
+ * import PropTypes from "prop-types"
  */
+
 export default Card

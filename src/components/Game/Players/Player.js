@@ -9,7 +9,8 @@ const Player = props => {
       <div
         style={{
           color: `black`,
-          marginBottom: `10px`,
+          padding: `10px`,
+          marginBottom: `20px`,
         }}
       >
         <input

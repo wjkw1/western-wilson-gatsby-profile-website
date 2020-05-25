@@ -23,16 +23,6 @@ const PlayerSection = props => {
     "K",
   ]
 
-  //Fisher-Yates shuffle, walks through array and replaces with a random other value
-  const shuffleArrayList = array => {
-    let arrayCopy = [...array]
-    for (let i = arrayCopy.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1))
-      ;[arrayCopy[i], arrayCopy[j]] = [arrayCopy[j], arrayCopy[i]]
-    }
-    return arrayCopy
-  }
-
   //function to create an object that contains a players hand
   const assignPlayerHands = (
     numberOfPlayers,
@@ -40,7 +30,7 @@ const PlayerSection = props => {
     cardValues
   ) => {
     let players = []
-    let shuffledCardValues = shuffleArrayList(cardValues)
+    let shuffledCardValues = props.shuffleArrayList(cardValues)
 
     //loop through players and assign the hands
     let playerIndex,
@@ -71,17 +61,14 @@ const PlayerSection = props => {
 
   return (
     <>
-      <div
-        style={{
-          color: `red`,
-        }}
-      >
-        PlayerSection
+      <h2>PlayerSection</h2>
+      <div style={{}}>
+        {players.map(player => {
+          return (
+            <Player key={player.key} name={player.name} hand={player.hand} />
+          )
+        })}
       </div>
-
-      {players.map(player => {
-        return <Player key={player.key} name={player.name} hand={player.hand} />
-      })}
     </>
   )
 }

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Row from "./Row"
 
 const CardSection = props => {
@@ -20,9 +20,9 @@ const CardSection = props => {
     "K",
   ]
 
-  //
-  let cardDeck = []
+  //builds a deck from the values
   const buildDeck = () => {
+    let cardDeck = []
     let card = []
     let index = 0
     let id = ""
@@ -43,21 +43,56 @@ const CardSection = props => {
 
     //TODO: remove this log
     console.log(cardDeck)
+    return cardDeck
   }
 
-  //build the deck
-  buildDeck()
+  //TODO: Make the row contain first 1, 2 or 3 cards
+  /**
+   * Row:
+   * numberOfDrinks = 1, 2, 3
+   * cards = [
+   *  {
+   *    value
+   *    suit
+   *    show
+   *    give/take/both
+   *  }
+   * ]
+   */
+
+  //INFINITE RENDER - https://medium.com/@andrewmyint/infinite-loop-inside-useeffect-react-hooks-6748de62871
+
+  //Assign variables & build the deck
+  const BOTH_DRINKS = 1,
+    GIVE_TAKE_DRINKS = 2
+  let cardSliceIndex = 0
+  const cardDeck = props.shuffleArrayList(buildDeck())
+
+  const getNextRow = numberOfDrinks => {
+    let originalCardSliceIndex = cardSliceIndex
+    cardSliceIndex = cardSliceIndex + numberOfDrinks
+    let cardRow = cardDeck.slice(originalCardSliceIndex, cardSliceIndex)
+    //TODO: add some logic to handle if slice gets bigger than arrayList. Need to keep current cards and then reset code
+    console.log(cardRow)
+    return cardRow
+  }
+
+  //card rows
+  const currentRows = []
+  currentRows.push(getNextRow(BOTH_DRINKS))
+  currentRows.push(getNextRow(GIVE_TAKE_DRINKS))
+  currentRows.push(getNextRow(GIVE_TAKE_DRINKS))
+  currentRows.push(getNextRow(GIVE_TAKE_DRINKS))
+  currentRows.push(getNextRow(BOTH_DRINKS))
 
   return (
     <>
-      <div
-        style={{
-          color: `red`,
-        }}
-      >
-        CardSection
+      <h2>Card Section</h2>
+      <div>
+        {currentRows.map(row => {
+          return <Row cards={row} />
+        })}
       </div>
-      <Row deck={cardDeck} />
     </>
   )
 }
