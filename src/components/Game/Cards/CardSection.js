@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Row from "./Row"
+import Button from "../../Common/Button"
 
 const CardSection = props => {
   const wilds = ["1", "2", "3", "4"]
@@ -85,9 +86,28 @@ const CardSection = props => {
   currentRows.push(getNextRow(GIVE_TAKE_DRINKS))
   currentRows.push(getNextRow(BOTH_DRINKS))
 
+  const buttonStyle1 = {
+    padding: `10px`,
+  }
+
+  const drawNextRound = currentRows => {
+    console.log("Next round drawn")
+    currentRows = []
+    currentRows.push(getNextRow(BOTH_DRINKS))
+    currentRows.push(getNextRow(GIVE_TAKE_DRINKS))
+    currentRows.push(getNextRow(GIVE_TAKE_DRINKS))
+    currentRows.push(getNextRow(GIVE_TAKE_DRINKS))
+    currentRows.push(getNextRow(BOTH_DRINKS))
+  }
+
   return (
     <>
       <h2>Card Section</h2>
+      <Button
+        class="restartButton"
+        value="Hello World"
+        onClick={console.log("Yeah this doesn't do anything useful yet...")}
+      />
       <div>
         {currentRows.map(row => {
           return <Row cards={row} />
