@@ -60,7 +60,6 @@ const CardSection = props => {
    *  }
    * ]
    */
-
   //INFINITE RENDER - https://medium.com/@andrewmyint/infinite-loop-inside-useeffect-react-hooks-6748de62871
 
   //Assign variables & build the deck
@@ -85,10 +84,6 @@ const CardSection = props => {
   currentRows.push(getNextRow(GIVE_TAKE_DRINKS))
   currentRows.push(getNextRow(GIVE_TAKE_DRINKS))
   currentRows.push(getNextRow(BOTH_DRINKS))
-
-  const buttonStyle1 = {
-    padding: `10px`,
-  }
 
   const drawNextRound = currentRows => {
     console.log("Next round drawn")

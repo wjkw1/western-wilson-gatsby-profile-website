@@ -27,6 +27,34 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
+      <h2
+        className="linkContainer"
+        style={{
+          margin: `1rem auto`,
+          display: `flex`,
+        }}
+      >
+        <Link
+          style={{
+            margin: `1rem auto`,
+            color: `white`,
+            textDecoration: `none`,
+          }}
+          to="/blog/"
+        >
+          Go to blog
+        </Link>
+        <Link
+          style={{
+            margin: `1rem auto`,
+            color: `white`,
+            textDecoration: `none`,
+          }}
+          to="/card-game/"
+        >
+          Go to Card Game
+        </Link>
+      </h2>
     </div>
   </header>
 )
